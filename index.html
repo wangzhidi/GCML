@@ -122,11 +122,11 @@
     <div class="hero-body">
       <video poster="" id="tree" autoplay controls muted loop height="100%">
         <!-- Your video here -->
-        <source src="static/videos/banner_video.mp4"
-        type="video/mp4">
+        <source src="static/videos/result_cycle_512.mkv"
+        type="video/mkv">
       </video>
       <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+        Different from previous methods that primarily focus on generating simple motions, our approach is designed to handle more complex actions. It leverages a Large Language Model for human action inference, task decomposition, and path planning. In combination with a 3D Visual Grounding Model for scene perception, this enables the generation of intricate, extended motions with complex scene and textual input.
       </h2>
     </div>
   </div>
@@ -141,7 +141,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+            To solve the problem of generating complex motions, we introduce GCML (Grounding Complex Motions using a Large Language Model). This method supports complex texts and scenes as inputs, such as mopping the floor in a cluttered room. Such everyday actions are challenging for current motion generation models for two main reasons. First, such complex actions are rarely found in existing HSI datasets, which places high demands on the generalization capabilities of current data-driven models. Second, these actions are composed of multiple stages, with considerable variation, making it difficult for models to understand and generate the appropriate motions. Current methods in the HSI field can control the generation of simple actions under multiple constraints, such as walking joyfully toward a door, but they cannot handle the complexity of tasks like the one described above. By incorporating a Large Language Model and a 3D Visual Grounding Model into the HSI domain, our approach can decompose a complex user prompt into a sequence of simpler subtasks and identify interaction targets and obstacles within the scene. Based on these subtask descriptions and spatial control information, the Motion Generation Model generates a sequence of full-body motions, which are then combined into a long motion sequence that aligns with both the user's input and the scene semantics. Experimental results demonstrate that our method achieves competitive performance for simple action generation on the HUMANISE dataset and the generalization evaluation set. For complex motion generation, we created a new evaluation set by automatically generating possible behaviors of virtual humans in common indoor scenes, where our method significantly outperforms existing approaches.
           </p>
         </div>
       </div>
