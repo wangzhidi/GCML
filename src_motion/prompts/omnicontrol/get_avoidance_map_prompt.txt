@@ -1,0 +1,15 @@
+import numpy as np
+from perception_utils import parse_query_obj
+from plan_utils import get_empty_avoidance_map, set_voxel_by_radius, set_voxel_by_bounding_box, cm2index, preprocess_avoidance_map
+
+# Query: None.
+avoidance_map = preprocess_avoidance_map()
+ret_val = avoidance_map
+
+# Query: Anything.
+avoidance_map = preprocess_avoidance_map()
+ret_val = avoidance_map
+
+# Query: Everything.
+avoidance_map = preprocess_avoidance_map()
+ret_val = avoidance_map

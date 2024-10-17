@@ -1,0 +1,25 @@
+import numpy as np
+from env_utils import execute
+from perception_utils import parse_query_obj
+import action_utils import composer
+
+objects = ['fruit','sofa']
+# Query: A tired person goes to eat some fruit and then lies on the sofa to sleep.
+composer("A tired person walks to the fruit.")
+composer("A person picks up fruit from the table with his right hand.")
+composer("A person eats the fruit in his right hand.")
+composer("A person walks to the sofa.")
+composer("A person lies on the sofa.")
+# done
+
+objects = ['chair','bed','piano','fridge','cupboard']
+# Query: a person goes to sit on the chair
+composer("A person walks to the chair.")
+composer("A person turns around in place and then sits on the chair.")
+# done
+
+objects = ['chair','bed','piano','fridge','cupboard']
+# Query: a person goes to sleep
+composer("A person walks to the bed.")
+composer("A person lies on the bed.")
+# done

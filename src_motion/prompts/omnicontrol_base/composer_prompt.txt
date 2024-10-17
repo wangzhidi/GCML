@@ -1,0 +1,126 @@
+import numpy as np
+from env_utils import execute, specify_pelvis_trajectory, specify_joint_position, specify_pelvis_position, generate_motion
+from perception_utils import parse_query_obj
+from plan_utils import get_affordance_map, get_avoidance_map, preprocess_avoidance_map
+
+# Query: a person walks forward.
+control_text='a person walks forward'
+n_frames=90
+generate_motion(control_text, n_frames)
+
+# Query: a person walks forward to sit on a chair.
+control_text='a person walks forward and then sit on the chair'
+n_frames=90
+affordance_map=get_affordance_map('chair')
+avoidance_map=preprocess_avoidance_map()
+specify_pelvis_trajectory(affordance_map,avoidance_map,control_text,n_frames)
+generate_motion(control_text, n_frames)
+
+
+# Query: a person walks happily to the bed.
+control_text='a person walks happily'
+n_frames=90
+affordance_map=get_affordance_map('bed')
+avoidance_map=preprocess_avoidance_map()
+# we use specify_pelvis_trajectory when query contains walking or running
+specify_pelvis_trajectory(affordance_map,avoidance_map,control_text,n_frames)
+generate_motion(control_text, n_frames)
+
+# Query: A tired person walks to the fruit.
+control_text='A tired person walks.'
+n_frames=90
+affordance_map=get_affordance_map('fruit')
+avoidance_map=preprocess_avoidance_map()
+specify_pelvis_trajectory(affordance_map,avoidance_map,control_text,n_frames)
+generate_motion(control_text, n_frames)
+
+# Query: A person picks up fruit from the table with his right hand.
+control_text='A person picks up something from the table with his right hand.'
+n_frames=90
+# remember: only pelvis, left_foot, right_foot, left_hand, right_hand is avaliable control joints
+control_joints=["right_hand"]
+control_frames={}
+control_hints={}
+control_frames["right_hand"]=range(30,90)
+control_hints["right_hand"]=parse_query_obj("something on the table").position_world
+pelvis_height=0.9
+specify_joint_position(control_text, control_joints, control_frames, control_hints,pelvis_height,n_frames)
+generate_motion(control_text, n_frames)
+
+# Query: A person eats the fruit in his right hand.
+control_text='A person eats the fruit in his right hand'
+n_frames=90
+generate_motion(control_text, n_frames) # for complex human-centric motions, just pass control text is ok
+
+# Query: a person crouches down to pick up something on the ground and then stands up.
+control_text='a person crouches down to pick up something on the ground and then stands up'
+n_frames=90
+generate_motion(control_text, n_frames)
+
+# Query: the person is doing a T-pose.
+control_text='the person is doing a T-pose.'
+n_frames=90
+generate_motion(control_text, n_frames) 
+
+# Query: a person balances on his left leg.
+control_text='a person balances on his left leg.'
+n_frames=90
+# this is just a human-centric motion, all motions that do not interact with scene objects are human-centric.
+generate_motion(control_text, n_frames) 
+
+# Query: a person walks forward and waves his right arm.
+control_text='a person walks forward and waves his right arm.'
+n_frames=90
+# for human-centric motion, just pass it to generation model
+generate_motion(control_text, n_frames) 
+
+# Query: A man walks back and forth in the room slowly..
+control_text='a person walks back and forth.'
+n_frames=90
+# this is also a human-centric motion, do not detect the whole room
+generate_motion(control_text, n_frames) 
+
+# Query: A person walks to the sofa.
+control_text='A person walks.'
+n_frames=90
+affordance_map=get_affordance_map('sofa')
+avoidance_map=preprocess_avoidance_map()
+specify_pelvis_trajectory(affordance_map,avoidance_map,control_text,n_frames)
+generate_motion(control_text, n_frames)
+
+# Query: A person lies on the sofa.
+control_text='A person lies on the sofa.'
+n_frames=90
+control_joints=["pelvis"]
+control_frames={}
+control_hints={}
+control_frames["pelvis"]=range(60,90)
+control_hints["pelvis"]=parse_query_obj("sofa").position_world
+pelvis_height=0.5
+specify_joint_position(control_text, control_joints, control_frames, control_hints,pelvis_height,n_frames)
+generate_motion(control_text, n_frames)
+
+# Query: A person walks around the table.
+control_text='A person walks.'
+n_frames=90
+affordance_map=get_affordance_map('a point around the table')
+avoidance_map=preprocess_avoidance_map()
+specify_pelvis_trajectory(affordance_map,avoidance_map,control_text,n_frames)
+generate_motion(control_text, n_frames)
+
+# Query: A person sits on the edge of the bed and leans against it.
+control_text='A person sits on the edge of the bed and leans against it.'
+n_frames=90
+affordance_map=get_affordance_map('a point on the edge of the bed')
+avoidance_map=preprocess_avoidance_map()
+specify_pelvis_trajectory(affordance_map,avoidance_map,control_text,n_frames)
+generate_motion(control_text, n_frames)
+
+# Query: a person walks to the left of the chair.
+control_text='a person walks.'
+n_frames=90
+affordance_map=get_affordance_map('a point 60cm to the left of the chair.')
+avoidance_map=preprocess_avoidance_map()
+specify_pelvis_trajectory(affordance_map,avoidance_map,control_text,n_frames)
+generate_motion(control_text, n_frames)
+
