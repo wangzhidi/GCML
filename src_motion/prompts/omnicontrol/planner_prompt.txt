@@ -1,0 +1,104 @@
+import numpy as np
+from env_utils import execute
+from perception_utils import parse_query_obj
+import action_utils import composer
+
+
+# Do not decompose a task into more than three sub-tasks.
+# When the input query is too complex, you can ingnore some details.
+
+# Query: a person walks to the chair.
+composer("a person walks to the chair")
+# done
+
+# Query: a person goes to sit on the chair
+composer("a person walks to the chair")
+composer("a person turns around in place and then sits on the chair")
+# done
+
+# Query: a person goes to sleep
+composer("a person walks to the bed")
+composer("a person lies on the bed")
+# done
+
+# Query: a person walks to the chair and leans against it
+composer("a person walks to the chair")
+composer("a person leans on something")
+# done
+
+# Query: a person looks around to find somewhere to sit
+composer("a person looks around")
+composer("a person walks to the chair")
+composer("a person sits down on the chair")
+# done
+
+# Query: a person moves the chair to the bed
+composer("a person walks to the chair")
+composer("a person walks puts his hand on the chair")
+composer("a person walks to the bed while pushing something")
+# done
+
+# Query: a person picks up the bowl on the table
+composer("a person walks to the table")
+composer("a person picks up the bowl on the table")
+# done
+
+# Query: a person throws something on the table into the dustbin
+composer("a person walks to the table")
+composer("a person walks picks up something on the table")
+composer("a person throws out something")  # For a complex motion, we ignore some details to keep the sub-tasks within three steps.
+# done
+
+# Query: a person jumps onto the bed with excitement
+composer("a person jumps to the bed with excitement")
+composer("a person lies on the bed with excitement")
+# done
+
+# Query: a thief enters the room looking for something valuable.
+composer("a person looks around cautiously")   # by default, the character starts inside the room.
+# done
+
+# Query: a person hears someone knocking on the door
+composer("a person walks to the door")    # when query is not a clear motion, we can speculate what the person will do next.
+composer("a person opens the door") 
+# done
+
+# Query: a tired person returns home
+composer("a person walks to the chair")    # we assume a tired person may want to have a rest.
+composer("a person sits on the chair") 
+# done
+
+# Query: an earthquake is coming and a person feels it
+composer("a person runs to the door")
+composer("a person opens the door") 
+# done
+
+# Query: someone stretches his arms overhead
+composer("a person stretches his arms overhead")
+# done
+
+# Query: a person dances happily in the room
+composer("a person dances happily") # we do not need to walk to the room or floor
+# done
+
+# Query: a man walks in a circle in the room
+composer("a person walks in a circle")
+# done
+
+# Query: a man sat down slowly on the floor
+composer("a man sat down slowly")
+# done
+
+# Query: a person makes a motion to throw a basketball
+composer("a person makes a motion to throw a basketball")
+# done
+
+# Query: a person selects a chair in the corner and sits on it
+composer("a person walks to the chair in the corner")
+composer("a person sits on the chair")
+# done
+
+# Query: a person selects a chair in the corner and sits on it
+composer("a person walks to the chair in the corner")
+composer("a person sits on the chair")
+# done

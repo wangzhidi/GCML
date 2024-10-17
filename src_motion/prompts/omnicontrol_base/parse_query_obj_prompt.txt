@@ -1,0 +1,38 @@
+import numpy as np
+from perception_utils import detect
+
+# Query: chair
+positive='chair'  # positive is the object we need to find
+negative=('table','desk','wall', 'ceiling', 'floor','other')    #negative contains common but non-relevant things in indoor scenes
+object = detect(positive, negative)   
+ret_val = object
+
+# Query: desk
+positive='desk'
+negative=('table','chair','wall', 'ceiling', 'floor','other')
+object = detect(positive, negative)   
+ret_val = object
+
+# Query: computer
+positive='computer'
+negative=('bookshelf','dustbin','table','chair','wall', 'ceiling', 'floor','other')
+object = detect(positive, negative)   
+ret_val = object
+
+# Query: something eatable
+positive='something eatable'
+negative=('bookshelf','table','chair','wall', 'ceiling', 'floor','other')
+object = detect(positive, negative)   
+ret_val = object
+
+# Query: table top
+positive='table top'
+negative=('bookshelf','dustbin','table','chair','wall', 'ceiling', 'floor','other')
+object = detect(positive, negative)   
+ret_val = object
+
+# Query: edge of the bed
+positive='edge of the bed'
+negative=('bookshelf','table','chair','wall', 'ceiling', 'floor','other')
+object = detect(positive, negative)   
+ret_val = object
