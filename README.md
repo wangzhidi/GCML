@@ -41,16 +41,6 @@ pip install -r requirements.txt
 - Obtain an OpenAI API key, and put it in playground file.
 
 
-## Setup
-
-- See [Instructions](https://github.com/stepjam/RLBench#install) to install PyRep and RLBench (Note: install these inside the created conda environment).
-
-- Install other dependencies:
-```Shell
-pip install -r requirements.txt
-```
-
-- Obtain an [OpenAI API](https://openai.com/blog/openai-api) key, and put it inside the first cell of the demo notebook.
 
 ## Running Demo
 
